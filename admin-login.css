@@ -1,0 +1,219 @@
+:root {
+  --primary: #d90429;
+  --primary-light: #ffebee;
+  --primary-dark: #b00020;
+  --secondary: #4361ee;
+  --text: #2b2d42;
+  --text-light: #6c757d;
+  --light: #f8f9fa;
+  --white: #ffffff;
+  --border: #e0e3eb;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Base Styles */
+body {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+  padding: 1rem;
+}
+
+/* Form Container */
+.form-container {
+  width: 100%;
+  max-width: 420px;
+  background: var(--white);
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  transform: translateY(0);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.form-container:hover {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+/* Header */
+.form-container h1 {
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  position: relative;
+}
+
+.form-container h1::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 3px;
+}
+
+/* Form Elements */
+#adminLoginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 1rem 0.75rem 0.5rem;
+  border: none;
+  border-bottom: 2px solid var(--border);
+  font-size: 1rem;
+  background-color: transparent;
+  transition: var(--transition);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-bottom-color: var(--primary);
+  box-shadow: 0 2px 0 0 var(--primary-light);
+}
+
+.form-group label {
+  position: absolute;
+  top: 1rem;
+  left: 0.75rem;
+  color: var(--text-light);
+  pointer-events: none;
+  transition: var(--transition);
+  transform-origin: left center;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+  transform: translateY(-1rem) scale(0.85);
+  color: var(--primary);
+}
+
+/* Button */
+#adminLoginForm .btn {
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+#adminLoginForm .btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(217, 4, 41, 0.2);
+}
+
+/* Error Message */
+.error-message {
+  color: var(--primary);
+  font-size: 0.9rem;
+  padding: 0.75rem;
+  text-align: center;
+  background-color: var(--primary-light);
+  border-radius: 8px;
+  display: none;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Toggle Text */
+.toggle-text {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+.toggle-text a {
+  color: var(--secondary);
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: var(--transition);
+}
+
+.toggle-text a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--secondary);
+  transition: var(--transition);
+}
+
+.toggle-text a:hover::after {
+  width: 100%;
+}
+
+/* Loading State */
+.loading .btn-text {
+  display: none;
+}
+
+.loading::after {
+  content: '';
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--white);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .form-container {
+    padding: 2rem 1.5rem;
+  }
+  
+  .form-container h1 {
+    font-size: 1.5rem;
+  }
+}
