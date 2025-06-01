@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Registration</title>
+    <link rel="stylesheet" href="admin.css"> <!-- Reuse your admin CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="firebase-config.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1><i class="fas fa-store-alt"></i> Store Registration</h1>
+            <div class="header-controls">
+                <button id="goToDashboardBtn" class="btn">
+                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                </button>
+            </div>
+        </header>
+        
+        <main class="dashboard-content">
+            <div class="signup-form-container">
+                <form id="storeSignupForm">
+                    <div class="form-group">
+                        <label for="storeName">Store Name</label>
+                        <input type="text" id="storeName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="storeId">Store ID (3 digits)</label>
+                        <input type="text" id="storeId" pattern="\d{3}" maxlength="3" required>
+                        <span class="store-id-status"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="champsId">Champs ID</label>
+                        <input type="text" id="champsId" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="managerName">Manager Name</label>
+                        <input type="text" id="managerName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number</label>
+                        <input type="tel" id="phoneNumber" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="storePassword">Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="storePassword" required minlength="6">
+                            <span class="toggle-password"><i class="fas fa-eye"></i></span>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 20px;">
+                        <i class="fas fa-save"></i> Register Store
+                    </button>
+                </form>
+            </div>
+        </main>
+    </div>
+    <script src="store-signup.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stores Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<!-- Replace your current Firebase scripts with these -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+<script src="firebase-config.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1><i class="fas fa-store-alt"></i> Stores Dashboard</h1>
+            <div class="header-controls">
+                <div class="search-box">
+                    <input type="text" placeholder="Search stores..." id="searchInput">
+                    <i class="fas fa-search"></i>
+                </div>
+                <button id="goToSignupBtn" class="btn" style="background-color: var(--primary);">
+    <i class="fas fa-user-plus"></i>
+    <span>Create New Store</span>
+</button>
+                <button id="logoutBtn" class="btn btn-danger btn-icon">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </button>
+                
+                <div class="stats-summary">
+                    <div class="stat-item">
+                        <span class="stat-value" id="totalStores">0</span>
+                        <span class="stat-label">Total</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="activeStores">0</span>
+                        
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <main class="dashboard-content">
+            <div class="stores-grid" id="storesGrid">
+                <div class="loading-spinner">
+                    <div class="spinner"></div>
+                    <p>Loading stores...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- Add this button near your header controls -->
+
+
+<!-- Add this modal at the bottom of the body (before scripts) -->
+<div id="addStoreModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Register New Store</h2>
+        <form id="storeSignupForm">
+            <div class="form-group">
+                <label for="storeName">Store Name</label>
+                <input type="text" id="storeName" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="storeId">Store ID (3 digits)</label>
+                <input type="text" id="storeId" pattern="\d{3}" required>
+                <span class="store-id-status"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="champsId">Champs ID</label>
+                <input type="text" id="champsId" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="managerName">Manager Name</label>
+                <input type="text" id="managerName" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phoneNumber">Phone Number</label>
+                <input type="tel" id="phoneNumber" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="storePassword">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="storePassword" required>
+                    <span class="toggle-password"><i class="fas fa-eye"></i></span>
+                </div>
+            </div>
+            
+            <button type="submit">Register Store</button>
+        </form>
+    </div>
+</div>
+    <script src="admin-dashboard.js"></script>
+</body>
+</html>
